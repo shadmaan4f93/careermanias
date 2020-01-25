@@ -1,0 +1,31 @@
+{% extends "accounts/accounts.html" %}
+{% load static %}
+{% block content %}
+    <form method="post" enctype="multipart/form-data" class="login100-form validate-form">
+        {% csrf_token %}
+        <div class="wrap-input100 validate-input m-b-1" data-validate="First name is required">
+            {{ form.first_name }}
+            <span class="focus-input100"></span>
+        </div>
+        <div class="wrap-input100 validate-input m-b-2" data-validate="Last Name is required">
+            {{ form.last_name }}
+            <span class="focus-input100"></span>
+        </div>
+        <div class="wrap-input100 validate-input m-b-3" data-validate="Email is required">
+            {{ form.email }}
+            <span class="focus-input100"></span>
+        </div>
+        <div class="container-login100-form-btn" style="margin-top: 15px;">
+        <button class="login100-form-btn" type="submit" style="margin-right: 15px;">Update</button>
+        <a href="/accounts/user/profile" class="login100-form-btn" style="cursor: pointer;">
+            Profile
+        </a>
+    </div>   
+    </form>
+<script>
+    $('input').addClass('input100');
+    $("#id_first_name").attr('placeholder', "First Name")
+    $("#id_last_name").attr('placeholder', "Last Name")
+    $("#id_email").attr('placeholder', "Email")
+</script>
+{% endblock %}

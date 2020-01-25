@@ -1,0 +1,50 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>skwebinfo login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="{% static "images/home.ico" %}"/>
+	<link rel="stylesheet" href="{% static "plugins/bootstrap.min.css"%}">
+    <script src="{% static "plugins/jquery.min.js" %}"></script>
+	<script src="{% static "plugins/bootstrap.min.js" %}"></script>
+	<link rel="stylesheet" href="{% static "plugins/font-awesome.min.css"%}">
+	<link rel="stylesheet" href="{% static "accounts/profile.css" %}">
+</head>
+<body>
+    <div class="bg-cover"></div>
+	<div class="container">
+		<div class="header">
+			<i class="fa fa-bars"></i>
+			<i class="fa fa-cog"></i>
+		</div>
+		<div class="middle">
+			{% if profile.img_link %}
+			<img src="{{profile.img_link}}" width="100" height="100" style="border-radius: 50%"/>
+			{% else %}
+			<img src="{% static "images/default-hero.jpg"%}" width="100" height="100" style="border-radius: 50%"/>
+			{% endif %}
+
+			{% if user.first_name %}
+			<h4 class="name">{{user.first_name}} {{user.last_name}} </h4>
+			{% else %}
+			<h4 class="name">{{user.username}}</h4>
+			{% endif %}
+			<h4 class="work">{{profile.profession}}</h4>
+			<h4 class="social"><a href="{{profile.facebook_profile}}"><i class="fa fa-facebook"></a></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="{{profile.linkedin_profile}}"><i class="fa fa-linkedin"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="{{profile.twitter_profile}}"><i class="fa fa-twitter"></i></a></h4>
+		</div>
+		<div class="footer">
+			<a href="/blogs" class="btn-follow">BACK TO BLOGS</a><br/>
+			<i class="fa fa-user-secret"></i>
+			<br/>
+			<h4 class="profile-status">{{profile.bio}}</h4>
+			<div class="footer_buttom">
+				<a href="/accounts/user/profile/update">Update Profile</a>
+				<a href="/accounts/profile/edit">Edit Account Info</a>
+				<a href="/accounts/change-password">Change Password</a>
+			</div>
+		</div>
+  	</div>
+</body>
+</html>

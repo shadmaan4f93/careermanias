@@ -1,0 +1,48 @@
+{% extends "accounts/accounts.html" %}
+{% load static i18n %}
+{% block js %}
+<script src="{% static "accounts/main.js" %}"></script>
+{% endblock %} 
+
+{% block content %}
+
+<form method="post" class="login100-form vaalidte-form" id="signupform">            
+{% csrf_token %}           
+    <div class="wrap-input100 validate-input m-b-0" data-validate="Username is required">
+        {{ form.username }}
+        <span class="focus-input100"></span>
+    </div>	
+    <div class="wrap-input100 validate-input m-b-01" data-validate="First Name is required">
+        {{ form.first_name }}
+        <span class="focus-input100"></span>
+    </div>
+    <div class="wrap-input100 validate-input m-b-1" data-validate="Last Name is required">
+        {{ form.last_name }}
+        <span class="focus-input100"></span>
+    </div>
+    <div class="wrap-input100 validate-input m-b-2" data-validate="Email is required">
+        {{ form.email }}
+        <span class="focus-input100"></span>
+    </div>
+    <div class="wrap-input100 validate-input m-b-3" data-validate="Password is required">
+        {{ form.password1 }}
+        <span class="focus-input100"></span>
+     
+    </div>	
+    <div class="wrap-input100 validate-input m-b-4" data-validate="Confirm Password is required">
+        {{ form.password2 }}		
+        <span class="focus-input100"></span>
+    </div>		
+    <ba><br>
+    <div class="container-login100-form-btn">
+        <span class="login100-form-btn" id="signup-btn" style="cursor: pointer;">
+            Sign Up
+        </span>
+        <p style="padding: 18px 0px 0px 45px">
+            Allready a member? <a href="/accounts/login" class="to_register">Sign In</a>
+        </p>
+        
+    </div>								
+</form>
+			
+{% endblock %}

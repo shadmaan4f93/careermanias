@@ -1,0 +1,158 @@
+{% extends "accounts/accounts.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<style>
+label{
+    color: #cccccc;
+    padding-top: 10px;
+}
+.thumbnail_container .close {
+    position: absolute;
+    top: -2px;
+    right: 0px;
+    color: #304551;
+}
+
+.thumbnail_container {
+  position: relative;
+  background: #d6d6d6;
+  display: table;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.thumbnail_container img {
+  display: table-cell;
+  height: 50px;
+  width: 50px
+}
+
+.thumbnail_container span {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: left;
+  padding-left:15px;
+}
+input[type=file] {
+    display: none;
+}
+.image_btn{
+    font-size: 30px;
+}
+#image-clear_id {
+    float: right;
+    position: relative;
+    top: 8px;
+}
+.errorlist {
+    color: #fd6d6d;
+}
+</style>
+
+<form method="post" class="login100-form validate-form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="wrap-input100 validate-input m-b-0" data-validate="">
+        {{ form.profession }}
+        <span class="focus-input100"></span>
+    </div>   
+    <div class="wrap-input100 validate-input m-b-1" data-validate="">
+        {{ form.bio }}
+        <span class="focus-input100"></span>
+    </div>   
+    <div class="wrap-input100 validate-input m-b-2" data-validate="">
+        {{ form.location }}
+        <span class="focus-input100"></span>
+    </div>
+    <div class="wrap-input100 validate-input m-b-3" data-validate="">
+        {{ form.linkedin_profile }}
+        <span class="focus-input100"></span>
+    </div>
+    <div class="wrap-input100 validate-input m-b-4" data-validate="">
+        {{ form.twitter_profile }}
+        <span class="focus-input100"></span>
+    </div>
+    <div class="wrap-input100 validate-input m-b-5" data-validate="">
+        {{ form.facebook_profile }}
+        <span class="focus-input100"></span>
+    </div> 
+     <div class="image_field">
+        <label for="{{ form.image.id_for_label }}" class="fa fa-camera image_btn">Chose image</label><br>
+        {{ form.image.errors }}
+        {{ form.image }}
+    </div> 
+     <div class="container-login100-form-btn" style="margin-top: 15px;">
+        <button class="login100-form-btn" type="submit" style="margin-right: 15px;">Update</button>
+        <a href="/accounts/user/profile" class="login100-form-btn" style="cursor: pointer;">
+            Profile
+        </a>
+    </div>            
+</form>
+<script>
+    $('#id_image').attr( "class", "fa fa-camera" );
+    $('input').addClass('input100');
+    $('#image-clear_id').removeClass('input100')
+    $("#id_profession").attr('placeholder', "Profession")
+    $("#id_bio").attr('placeholder', "Somthing Abou You")
+    $("#id_location").attr('placeholder', "Address")
+    $("#id_linkedin_profile").attr('placeholder', "Linkdin Profile Link")
+    $("#id_twitter_profile").attr('placeholder', "Twitter Profile Link")
+    $("#id_facebook_profile").attr('placeholder', "Facebook Profile Link")
+    $("#id_image").attr('placeholder', "Image")
+    $("#id_image").change(file_display (id='#id_image'));
+        function file_display(id) {
+        // --- event to display image thumbnail adjacent to file upload control.
+        $(id).change(function() {
+            var reader = new FileReader();
+            var fileupload_element = $(this);
+            reader.onload = function(event) {
+                var ext = $(id)[0].files[0].name.split('.').pop();
+                var file_name = $(id)[0].files[0].name;
+                if (file_name.length >= 15) {
+                    file_name = file_name.substring(0, 15) + '...'
+                }
+                var file_src = event.target.result
+                var icon_class = ''
+                var element_tag = '<span class="[[thumbnail_icon]]"></span>';
+                var thumbnail_container = '<div class="thumbnail_container col-sm-4">[[element_tag]]<span>' +
+                    file_name + '</span><span class="close"><i class="fa fa-window-close" aria-hidden="true"></i></span></div>'
+
+                switch (ext.toLowerCase()) {
+                    case "png":
+                    case "jpeg":
+                    case "bmp":
+                    case "gif":
+                    case "jpg":
+                        element_tag = ' <img src="[[file_src]]" />'
+                        break;
+                    case "pdf":
+                        icon_class = 'fa fa-file-pdf-o fa-3x'
+                        break;
+                    case "doc":
+                    case "docx":
+                        icon_class = 'fa fa-file-word-o fa-3x'
+                        break;
+                    default:
+                        icon_class = 'fa fa-file fa-3x'
+                        break;
+                };
+
+                thumbnail_container = thumbnail_container.replace('[[element_tag]]', element_tag);
+                thumbnail_container = thumbnail_container.replace('[[file_src]]', file_src);
+                thumbnail_container = thumbnail_container.replace('[[thumbnail_icon]]', icon_class);
+                $(".thumbnail_container").remove()
+
+                fileupload_element.parent().append(thumbnail_container);
+
+                $(".thumbnail_container .close").click(function(e) {
+                    $(id)[0].value = '';
+                    $(this).parent().remove();
+                });
+            }
+            reader.readAsDataURL($(id)[0].files[0]);
+        });
+    }
+</script>
+{% endblock %}
