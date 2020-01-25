@@ -1,0 +1,55 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="shadmaan">
+        <title>Error 500</title>
+<style> 
+.errors-view {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+}
+.errors-view h1 {
+    font-size: 60px;
+    font-weight: 900;
+    text-decoration: underline;
+    font-family: fantasy;
+    color: #ccc;
+    margin: 10px;
+}
+.errors-view h4 {
+    font-size: 20px;
+    color: #ccc;
+}
+.errors-view p {
+    font-size: 35px;
+    color: #ccc;
+    margin: 5px;
+}
+.errors-view button {
+    border-radius: 15px;
+    padding: 10px 30px 10px 30px;
+    text-decoration: none;
+    border: 2px solid #ccc;
+}
+.errors-view a {
+    text-decoration: none;
+    color: #666;
+    font-weight: 900;
+}
+</style>
+</head>
+   <body>
+    <section class="errors-view">
+        <h1>403</h1>
+        <h4> <p>Ops!</p>Forbidden</h4>
+        <button><a href="/">BACK TO HOME</a></button>
+    </section>
+ </body>
+</html>
