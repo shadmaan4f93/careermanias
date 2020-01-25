@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>CAREERMANIAA</title>
+        <link rel="apple-touch-icon" sizes="57x57" href="{% static "images/lo-57x57.png"%}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{% static "images/favicons/apple-icon-60x60.png"%}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{% static "images/favicons/apple-icon-72x72.png"%}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{% static "images/favicons/apple-icon-76x76.png"%}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{% static "images/favicons/apple-icon-114x114.png"%}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{% static "images/favicons/apple-icon-120x120.png"%}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{% static "images/favicons/apple-icon-144x144.png"%}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{% static "images/favicons/apple-icon-152x152.png"%}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static "images/favicons/apple-icon-180x180.png"%}">
+        <link rel="icon" type="image/png" sizes="192x192" href="{% static "images/favicons/android-icon-192x192.png"%}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static "images/favicons/favicon-32x32.png"%}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{% static "images/favicons/favicon-96x96.png"%}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static "images/favicons/favicon-16x16.png"%}">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="{% static "images/favicons/ms-icon-144x144.png"%}">
+        <meta name="theme-color" content="#ffffff">
+  
+        <link href="{% static "plugins/css/bootstrap.min.css" %}" rel="stylesheet">
+    
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Volkhov:400i" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+        <link href="{% static "plugins/css/animate.css"%}" rel="stylesheet">
+        <link href="{% static "plugins/css/font-awesome.min.css"%}" rel="stylesheet">
+        <link href="{% static "plugins/css/pe-icon-7-stroke.css"%}" rel="stylesheet">
+        <link href="{% static "plugins/css/et-line-font.css"%}" rel="stylesheet">
+        <link href="{% static "plugins/css/flexslider.css"%}" rel="stylesheet">
+        <link href="{% static "plugins/css/owl.carousel.min.css"%}" rel="stylesheet">
+        <link href="{% static "plugins/css/owl.theme.default.min.css"%}" rel="stylesheet">
+        <link href="{% static "plugins/css/magnific-popup.css"%}" rel="stylesheet">
+        <link href="{% static "plugins/css/simpletextrotator.css"%}" rel="stylesheet">
+   
+        <link href="{% static "css/style.css"%}" rel="stylesheet">
+        <link id="color-scheme" href="{% static "css/colors/default.css"%}" rel="stylesheet">
+
+    </head>
+    <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
+        <main>
+            <div class="page-loader">
+                <div class="loader">Loading...</div>
+            </div>
+            {% block content %}
+            {% endblock %}
+
+              <!-- Modal -->
+            <div class="modal fade" id="signup-modal" role="dialog">
+                <div class="modal-dialog" style="top:50px;">
+                <!-- Modal content-->
+                <div class="modal-content sign-up__background">
+                    <div class="modal-header">
+						<header class="sign-up__header">
+						<h2 class="sign-up__title text-uppercase animated fadeIn">Sign-up</h2>
+						</header>
+                    </div>
+                    <div class="modal-body" style="display: flex; z-index: 999">
+                     	<section class="sign-up">
+                        	<div class="panel text-left animated fadeInUpSmall">
+								<form data-behavior="sign-up">
+									<fieldset class="form-group">
+									<label for="email">Email</label>
+									<input name="email" type="email" class="form-control" placeholder="Enter email address" autofocus required>
+									</fieldset>
+									<fieldset class="form-group">
+									<label for="username">Username</label>
+									<input name="username" type="text" class="form-control" placeholder="Enter username" required>
+									</fieldset>
+									<fieldset class="form-group">
+									<label for="password">Password</label>
+									<input name="password" type="password" class="form-control" placeholder="Enter password" required>
+									</fieldset>
+									<div class="form-group">
+									<button class="btn btn-primary btn-block text-uppercase">Create Account</button>
+									</div>
+								</form>
+								<div class="sign-up__byline">
+									<span>connect with</span>
+									<ul class="list-unstyled list-inline pull-right">
+										<li><a href="#"><span class="fa fa-instagram"></span></a>
+										</li>
+										<li><a href="#"><span class="fa fa-facebook-official"></span></a>
+										</li>
+											<li><a href="#"><span class="fa fa-google"></span></a>
+										</li>
+									</ul>
+								</div>
+                        	</div>
+							<div class="panel text-left animated fadeInUpSmall delay--450">
+							<small class="text-uppercase">
+								Already have account?
+								<a href="#" class="pull-right">Sign in</a>
+							</small>
+							</div>
+                    	</section>
+                    </div>
+                </div>
+            </div>
+
+			<div class="modal fade" id="signin-modal" role="dialog">
+                <div class="modal-dialog" style="top:50px;">
+                <!-- Modal content-->
+                <div class="modal-content sign-up__background">
+                    <div class="modal-header">
+						<header class="sign-up__header">
+						<h2 class="sign-up__title text-uppercase animated fadeIn">Sign-In</h2>
+						</header>
+                    </div>
+                    <div class="modal-body" style="display: flex; z-index: 999">
+                     	<section class="sign-up">
+                        	<div class="panel text-left animated fadeInUpSmall">
+								<form data-behavior="sign-up">
+									<fieldset class="form-group">
+									<label for="username">Username</label>
+									<input name="username" type="text" class="form-control" placeholder="Enter username" required>
+									</fieldset>
+									<fieldset class="form-group">
+									<label for="password">Password</label>
+									<input name="password" type="password" class="form-control" placeholder="Enter password" required>
+									</fieldset>
+									<div class="form-group">
+									<button class="btn btn-primary btn-block text-uppercase">Log In</button>
+									</div>
+								</form>
+								<div class="sign-up__byline">
+									<span>connect with</span>
+									<ul class="list-unstyled list-inline pull-right">
+										<li><a href="#"><span class="fa fa-instagram"></span></a>
+										</li>
+										<li><a href="#"><span class="fa fa-facebook-official"></span></a>
+										</li>
+											<li><a href="#"><span class="fa fa-google"></span></a>
+										</li>
+									</ul>
+								</div>
+                        	</div>
+							<div class="panel text-left animated fadeInUpSmall delay--450">
+							<small class="text-uppercase">
+								Don't have account?
+								<a href="" class="pull-right">Sign Up</a>
+							</small>
+							</div>
+                    	</section>
+                    </div>
+                </div>
+            </div>
+            </div>
+            
+            </div>
+        </main>
+   
+        <script src="{% static "/angular/angular.js" %}" type="text/javascript"></script>
+        <script src="{% static "/angular/custom-angular.js" %}" type="text/javascript"></script>
+        <script src="{% static "plugins/js/jquery.js"%}"></script>
+        <script src="{% static "plugins/js/bootstrap.min.js"%}"></script>
+        <script src="{% static "plugins/js/wow.js"%}"></script>
+        <script src="{% static "plugins/js/jquery.mb.YTPlayer.js"%}"></script>
+        <script src="{% static "plugins/js/isotope.pkgd.js"%}"></script>
+        <script src="{% static "plugins/js/imagesloaded.pkgd.js"%}"></script>
+        <script src="{% static "plugins/js/jquery.flexslider.js"%}"></script>
+        <script src="{% static "plugins/js/owl.carousel.min.js"%}"></script>
+        <script src="{% static "plugins/js/jquery.nicescroll.js"%}"></script>
+        <script src="{% static "plugins/js/jquery.magnific-popup.js"%}"></script>
+        <script src="{% static "plugins/js/jquery.simple-text-rotator.min.js"%}"></script>
+        <script src="{% static "js/plugins.js"%}"></script>
+        <script src="{% static "js/main.js"%}"></script>
+    </body>
+</html>
