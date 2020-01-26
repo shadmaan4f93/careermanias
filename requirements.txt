@@ -12,5 +12,5 @@ sqlparse==0.3.0
 whitenoise==5.0.1
 djangorestframework==3.11.0
 six==1.14.0
-django-filters==2.2.0
-django-filter==2.2.0
+django-filter
+django-filter

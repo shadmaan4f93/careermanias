@@ -2780,6 +2780,7 @@ Google map
   text-align: center;
   color: #999;
   padding: 4px 12px;
+  cursor: pointer;
 }
 
 .pagination a.active {

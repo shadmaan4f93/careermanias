@@ -65,4 +65,4 @@ class AdvanceCoachingSerializer(serializers.ModelSerializer):
 class SimpleCoachingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Coaching
-        fields = ('name','id','description')
+        fields = ('name','id','description', 'logo_link')
