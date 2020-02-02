@@ -3690,3 +3690,80 @@ small {
 .modal-backdrop {
   z-index: 0 !important;
 }
+
+.member-profile-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  padding-bottom: 1px;
+}
+
+.member-profile-card .title {
+  color: grey;
+  font-size: 18px;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 20px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #666666;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #666666;
+  cursor: pointer;
+}
+.custom-input-flax {
+  display: flex;
+  padding: 10px;
+}
+.adon-span{
+  background: #e0e0e0;
+  border-radius: 5px;
+  padding: 1px 4px;
+  margin-left: 5px;
+  width: 150px;
+}
+
+.member-profile-card a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+  margin: 10px;
+}
+.container-custom {
+  padding: 20px;
+}
+.custom-input-flax .search{
+  border: none !important;
+  background: transparent;
+  border-bottom: 1px solid #ccc !important;
+}
+.custom-input-flax .input-group {
+  width: 100%;
+}

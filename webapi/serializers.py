@@ -22,7 +22,7 @@ class AddressSerializer(serializers.ModelSerializer):
     location_of = GeolocationSerializer(many=False, read_only=True)
     class Meta:
         model = Address
-        fields = ('id','location_of','line1','line2','building','landmark','district','state','pincode')
+        fields = ('id','location_of','line1','line2','building','landmark','district','state','pincode','branch')
 
 # 
 class BatchSerializer(serializers.ModelSerializer):

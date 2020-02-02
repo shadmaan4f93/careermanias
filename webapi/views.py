@@ -17,7 +17,11 @@ from webapi.serializers import (
     AddressSerializer,BatchSerializer,CoachingFacultyMemberSerializer,CourseSerializer,
     BranchSerializer,AdvanceCoachingSerializer,SimpleCoachingSerializer,CoachingMetaDataSerializer
 )
-
+from django.db.models import Q
+from webapi.utils import GeolocationApi
+from rest_framework.renderers import JSONRenderer
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 class SmallResultsSetPagination(PageNumberPagination):
     page_size = 4
@@ -41,11 +45,30 @@ class SimpleCoachingDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Coaching.objects.all()
 
 class CoachingSearchAPIView(ListAPIView):
-    queryset = Coaching.objects.all()
+    
     serializer_class = SimpleCoachingSerializer
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['name', 'description']
     pagination_class = SmallResultsSetPagination
+    
+
+    def get_queryset(self):
+        """
+        Optionally restricts the returned coaching to a given user,
+        by filtering against a `city` `stream` `fees`query parameter in the URL.
+        """
+        coachings_pk = []
+        queryset = Coaching.objects.all()
+        print(self.request.query_params)
+        course = self.request.query_params.get('course')
+        fee    = self.request.query_params.get('feet')
+        course_queryset = Course.objects.filter(Q(fees__lte=int(fee))|Q(stream__contains='science'))[:5]
+        if course_queryset is not None:
+            for course in course_queryset:
+                course_branch_caoching_pk = course.branch.coaching.id
+                coachings_pk.append(course_branch_caoching_pk)
+            coaching_queryset = Coaching.objects.filter(pk__in=coachings_pk)
+        queryset = coaching_queryset
+        
+        return queryset
 
 # caoching advance api
 
@@ -63,9 +86,38 @@ class BranchDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Branch.objects.all()
     
 # Address
-class AddressCreateAPIView(CreateAPIView):
-    serializer_class = AddressSerializer
-    queryset = Address.objects.all()
+
+# class AddressCreateAPIView(CreateAPIView):
+#     serializer_class = AddressSerializer
+#     queryset = Address.objects.all()
+    
+class AddressCreateAPIView(APIView):
+    def post(self, request, format=None):
+        """
+        creates Address and location together
+        """
+        success = False
+        try:
+            line1=request.data["line1"]
+            district=request.data["district"]
+            state=request.data["state"]
+            pincode=request.data["pincode"]
+            branch=request.data["branch"]
+            address_obj = Address(line1=line1,district=district,
+                                state=state,pincode=pincode,branch=Branch.objects.get(pk=branch))
+            address_obj.save()
+            address_string = district+", "+state+", "+pincode
+            if address_obj.id:
+                location_coordinates = GeolocationApi.get_lat_lng(address_string)
+                geolocation_obj = Geolocation(address=address_obj,
+                                        lat=location_coordinates["latitude"],
+                                        lng=location_coordinates["latitude"])
+                geolocation_obj.save()
+                success=True
+        except Exception as e:
+            success=False
+            print(e)
+        return Response(success)
 
 class AddressDetailView(RetrieveUpdateDestroyAPIView):
     serializer_class = AddressSerializer
@@ -108,4 +160,6 @@ class CoachingMetaDataDetailView(RetrieveUpdateDestroyAPIView):
 
 
 
+def save_location_at_create_address(self,request):
+    print(self,request)
 

@@ -5,63 +5,70 @@
 {% include 'shared/nav.html' %}
 <!--Navbar End -->
 <div class="main" ng-app="HomeApp" ng-controller="Coachings" ng-init="init();">
-    <section class="module bg-dark-60 shop-page-header" data-background="{% static "images/91627.jpg"%}">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6 col-sm-offset-3">
-                <h2 class="module-title font-alt">Shop Products</h2>
-                <div class="module-subtitle font-serif">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</div>
-            </div>
-        </div>
-    </div>
-    </section>
-    <section class="module-small">
-        <div class="container">
-            <form class="row">
-                <div class="col-sm-4 mb-sm-20">
-                    <select class="form-control">
-                        <option selected="selected">Default Sorting</option>
-                        <option>Popular</option>
-                        <option>Latest</option>
-                        <option>Average Price</option>
-                        <option>High Price</option>
-                        <option>Low Price</option>
-                    </select>
-                </div>
-                <div class="col-sm-2 mb-sm-20">
-                    <select class="form-control">
-                        <option selected="selected">classes</option>
-                        <option>insitution</option>
-                    </select>
-                </div>
-                <div class="col-sm-3 mb-sm-20">
-                    <select class="form-control">
-                        <option selected="selected">All</option>
-                        <option>Coats</option>
-                        <option>Jackets</option>
-                    </select>
-                </div>
-                <div class="col-sm-3">
-                    <button class="btn btn-block btn-round btn-g" type="submit">Apply</button>
-                </div>
-            </form>
-        </div>
-    </section>
-    <hr class="divider-w">
     <section class="module-small">
 	{% verbatim %}
-        <div class="container">
+        <div class="container-custom">
             <div class="row multi-columns-row">
-                <div class="col-sm-6 col-md-3 col-lg-3" ng-repeat="list in getCoachinglist">
-                    <div class="shop-item">
-                        <div class="shop-item-image">
-                            <img src="{{list.logo_link}}" alt="Accessories Pack"/>
-                            <div class="shop-item-detail"><a class="btn btn-round btn-b"><span class="icon-basket">Add To Cart</span></a></div>
+                <div class="col-sm-3">
+                    <form>
+                        <div class="custom-input-flax">
+                        <div class="input-group">
+                            <input id="search" type="text" class="form-control search" name="search" placeholder="Search coaching.....">
+                            <span class="input-group-addon search"><i class="fa fa-search" aria-hidden="true"></i></span>
                         </div>
-						
-                        <h4 class="shop-item-title font-alt"><a href="#">{{list.name}}</a></h4>
-                        £9.00
-						
+                        </div>
+                        <div class="custom-input-flax">
+                            <select class="form-control" ng-change="feeTypeSelected()" name="selectedFeeType" id="selectedFeeType" ng-model="selectedFeeType">
+                                <option value="">Select Fee Type</option>
+                                <option ng-repeat="type in feeTypeList" value="{{type}}">{{type}}</option>
+                            </select> 
+                        
+                        </div>
+                        <div class="custom-input-flax">
+                            <input type="range" ng-change="FeeChange()" class="slider" name="fee_value" ng-model="fee_value" min="100"  max="200000">
+                            <span class="adon-span">
+                                {{fee_value}} INR
+                            </span>
+                        </div>
+                        <hr>
+                        <div class="custom-input-flax">
+                            <select class="form-control" ng-change="citySelected()" name="selectedCity" id="selectedCity" ng-model="selectedCity">
+                                <option value="">Select city</option>
+                                <option ng-repeat="city in cityList" value="{{city}}">{{city}}</option>
+                            </select> 
+                        </div>
+                        <div class="custom-input-flax">
+                            <input type="range" ng-change="locationChange()" class="slider" name="location_range" ng-model="location_range" min="5"  max="50">
+                            <span class="adon-span">
+                                {{location_range}} KM
+                            </span>
+                        </div>
+                
+                        <hr>
+                
+                        <div class="custom-input-flax">
+                            <select class="form-control" ng-change="courseSelected()" name="selectedCourse" id="selectedCourse" ng-model="selectedCourse">
+                                <option value="">Select Course</option>
+                                <option ng-repeat="course in courseList" value="{{course}}">{{course}}</option>
+                            </select>
+                        </div>
+                        <div class="custom-input-flax">
+                            <button class="btn btn-block btn-round btn-g" ng-click="filterCoaching()">Find Coachings</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-9">
+                    <div class="col-sm-3 col-md-3 col-lg-3" ng-repeat="list in getCoachinglist">
+                        <div class="shop-item">
+                            <div class="shop-item-image">
+                                <img src="{{list.logo_link}}" alt="Accessories Pack"/>
+                                <div class="shop-item-detail"><a class="btn btn-round btn-b" href="/coaching/admintion"><span class="fa fa-graduation-cap">Get Admition</span></a></div>
+                            </div>
+                            
+                            <h4 class="shop-item-title font-alt"><a href="#">{{list.name}}</a></h4>
+                            £9.00
+                            
+                        </div>
                     </div>
                 </div>
             </div>

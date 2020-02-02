@@ -4,7 +4,6 @@ from phone_field import PhoneField
 from django_mysql.models import ListCharField
 
 
-
 class Coaching(models.Model):
     id = models.AutoField(primary_key=True)
     external_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
@@ -55,8 +54,6 @@ class Geolocation(models.Model):
     address = models.OneToOneField(Address,related_name='location_of',on_delete=models.CASCADE)
     lat = models.DecimalField(decimal_places=2,max_digits=10,null=False,default=None)
     lng = models.DecimalField(decimal_places=2,max_digits=10,null=False,default=None)
-    region = models.IntegerField()
-    subregion = models.IntegerField()
 
 class Course(models.Model):
 

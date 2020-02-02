@@ -11,3 +11,6 @@ def about(request):
 def listings(request):
     context = {'data':"Success"}
     return render(request, 'listings.html', context)
+
+def coaching(request):
+    return render(request, 'coaching.html', {})
