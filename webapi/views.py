@@ -31,17 +31,21 @@ class SmallResultsSetPagination(PageNumberPagination):
 
 # coachings basic api
 
+# creates coachings
 class SimpleCoachingCreateAPIView(CreateAPIView):
     serializer_class = SimpleCoachingSerializer
     queryset = Coaching.objects.all()
 
+# lists all coachings
 class SimpleCoachingListAPIView(ListAPIView):
     serializer_class = SimpleCoachingSerializer
     queryset = Coaching.objects.all()
     pagination_class = SmallResultsSetPagination
 
+# provides few details of a coaching.
 class SimpleCoachingDetailView(RetrieveUpdateDestroyAPIView):
     serializer_class = SimpleCoachingSerializer
+    lookup_field = "id"
     queryset = Coaching.objects.all()
 
 class CoachingSearchAPIView(ListAPIView):
@@ -74,11 +78,13 @@ class CoachingSearchAPIView(ListAPIView):
 
 class AdvanceCoachingDetailView(RetrieveUpdateDestroyAPIView):
     serializer_class = AdvanceCoachingSerializer
+    lookup_field = "id"
     queryset = Coaching.objects.all()
 
 # Branch     
 class BranchCreateAPIView(CreateAPIView):
     serializer_class = BranchSerializer
+    lookup_field = "id"
     queryset = Branch.objects.all()
 
 class BranchDetailView(RetrieveUpdateDestroyAPIView):
@@ -122,6 +128,7 @@ class AddressCreateAPIView(APIView):
 class AddressDetailView(RetrieveUpdateDestroyAPIView):
     serializer_class = AddressSerializer
     queryset = Address.objects.all()
+    
 # Course
 class CourseCreateAPIView(CreateAPIView):
     serializer_class = CourseSerializer
@@ -146,6 +153,11 @@ class CoachingFacultyMemberCreateAPIView(CreateAPIView):
 
 class CoachingFacultyMemberDetailView(RetrieveUpdateDestroyAPIView):
     serializer_class = CoachingFacultyMemberSerializer
+    queryset = CoachingFacultyMember.objects.all()
+
+class CoachingFacultyMemberListAPIView(ListAPIView):
+    serializer_class = CoachingFacultyMemberSerializer
+    lookup_field = 'coaching_id'
     queryset = CoachingFacultyMember.objects.all()
 
 # CoachingMetaData
